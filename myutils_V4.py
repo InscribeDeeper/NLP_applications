@@ -36,8 +36,7 @@ def text_process(filename):
         print("Urls processing: Deleted # characters: ", len(t2) - len(t3))
         t4 = t3.split('\n\n')  # 分开段落
         print("# Paragraph: ", len(t4))
-        cleaned = [" ".join(re.findall(pattern, para)) for para in
-                   t4]  # 找到每个段落中的单词 (可以顺便去除stopword), 还是留在tfidf_vectorizer
+        cleaned = [" ".join(re.findall(pattern, para)) for para in t4]  # 找到每个段落中的单词 (可以顺便去除stopword), 还是留在tfidf_vectorizer
 
         # 去除多余空格
         # 替换数字为x
@@ -139,8 +138,7 @@ def eda_MAX_DOC_LEN(corpus, ratio=0.9, filters='!"#$%&()*+,-./:;<=>?@[\\]^_`{|}~
 
     # MAX_DOC_LEN=30
     # corpus = train_5k
-    tokenizer_eda = Tokenizer(num_words=None, filters=filters,
-                              lower=True, char_level=char_level)
+    tokenizer_eda = Tokenizer(num_words=None, filters=filters,lower=True, char_level=char_level)
     tokenizer_eda.fit_on_texts(corpus)
 
     dt_q1 = pd.DataFrame([len(i) for i in tokenizer_eda.texts_to_sequences(corpus)], columns=['length'])
